@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dr. Sarah N. (Daddy's Medicine)</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Lora', Georgia, serif;
+			color: #fff;
+			background: url('sarah-background.png') no-repeat center center fixed;
+			background-size: cover;
+			min-height: 100vh;
+		}
+
+		/* Animated gradient overlay on body */
+		body::before {
+			content: '';
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(135deg,
+					rgba(0, 0, 0, 0.4),
+					rgba(30, 0, 40, 0.5),
+					rgba(60, 0, 50, 0.3));
+			z-index: -1;
+		}
+
+		.container {
+			background: linear-gradient(145deg,
+					rgba(0, 0, 0, 0.7),
+					rgba(20, 0, 30, 0.65),
+					rgba(0, 0, 0, 0.7));
+			margin: 40px auto;
+			padding: 50px 40px;
+			width: 90%;
+			max-width: 1100px;
+			border-radius: 20px;
+			text-align: center;
+			backdrop-filter: blur(10px);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+		}
+
+		.container h1 {
+			font-family: 'Playfair Display', Georgia, serif;
+			font-size: 48px;
+			font-weight: 700;
+			letter-spacing: 2px;
+			background: linear-gradient(135deg, #ffd700, #ffaa00, #ffd700);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			margin-bottom: 8px;
+			text-shadow: none;
+		}
+
+		.container>h2 {
+			font-family: 'Playfair Display', Georgia, serif;
+			font-style: italic;
+			color: #ff99cc;
+			font-size: 24px;
+			font-weight: 400;
+			margin-bottom: 25px;
+			animation: shimmer 3s ease-in-out infinite;
+		}
+
+		@keyframes shimmer {
+
+			0%,
+			100% {
+				opacity: 0.8;
+			}
+
+			50% {
+				opacity: 1;
+			}
+		}
+
+		.container>p {
+			font-size: 18px;
+			line-height: 1.9;
+			color: rgba(255, 255, 255, 0.9);
+			max-width: 750px;
+			margin: 0 auto 30px;
+			font-style: italic;
+		}
+
+		button {
+			padding: 16px 36px;
+			font-size: 17px;
+			font-family: 'Lora', Georgia, serif;
+			font-weight: 600;
+			background: linear-gradient(135deg, #ff69b4, #ff1493);
+			color: #fff;
+			border: none;
+			border-radius: 50px;
+			cursor: pointer;
+			margin-top: 25px;
+			transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			box-shadow: 0 6px 25px rgba(255, 105, 180, 0.35);
+			letter-spacing: 0.5px;
+		}
+
+		button:hover {
+			background: linear-gradient(135deg, #ff85c8, #ff3da8);
+			transform: translateY(-3px) scale(1.03);
+			box-shadow: 0 10px 35px rgba(255, 105, 180, 0.5);
+		}
+
+		button:active {
+			transform: translateY(0) scale(0.98);
+		}
+
+		#qualities,
+		#goodmorning {
+			display: none;
+			margin-top: 50px;
+			text-align: left;
+			animation: fadeSlideIn 0.8s ease-out;
+		}
+
+		@keyframes fadeSlideIn {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		#qualities h1 {
+			font-family: 'Playfair Display', Georgia, serif;
+			font-size: 36px;
+			text-align: center;
+			margin-bottom: 40px;
+			background: linear-gradient(135deg, #ffd700, #ffaa00);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+
+		h2 {
+			color: #ffcc66;
+			font-family: 'Playfair Display', Georgia, serif;
+			font-size: 26px;
+			margin-bottom: 12px;
+		}
+
+		.quality {
+			display: flex;
+			align-items: stretch;
+			margin-bottom: 35px;
+			background: linear-gradient(135deg,
+					rgba(255, 255, 255, 0.08),
+					rgba(255, 255, 255, 0.03));
+			padding: 0;
+			border-radius: 16px;
+			overflow: hidden;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			transition: all 0.4s ease;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+		}
+
+		.quality:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+			border-color: rgba(255, 204, 102, 0.3);
+		}
+
+		.quality .img-wrapper {
+			flex-shrink: 0;
+			width: 280px;
+			min-height: 280px;
+			overflow: hidden;
+			position: relative;
+		}
+
+		.quality .img-wrapper img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+			transition: transform 0.6s ease;
+		}
+
+		.quality:hover .img-wrapper img {
+			transform: scale(1.05);
+		}
+
+		.quality .text-content {
+			flex: 1;
+			padding: 30px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		.quality .text-content p {
+			flex: 1;
+			font-size: 17px;
+			line-height: 1.8;
+			color: rgba(255, 255, 255, 0.85);
+		}
+
+		/* Alternate layout - image on right for even items */
+		.quality:nth-child(even) {
+			flex-direction: row-reverse;
+		}
+
+		/* Good Morning Section */
+		#goodmorning {
+			background: linear-gradient(135deg, #ffffff, #e6f0ff, #cce6ff);
+			color: #003366;
+			padding: 50px;
+			border-radius: 20px;
+			font-size: 19px;
+			line-height: 1.9;
+			box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+			border: 1px solid rgba(204, 230, 255, 0.5);
+		}
+
+		#goodmorning h1 {
+			text-align: center;
+			font-size: 32px;
+			font-family: 'Playfair Display', Georgia, serif;
+			margin-bottom: 25px;
+			background: linear-gradient(135deg, #003366, #0066cc);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+
+		#goodmorning p {
+			margin-bottom: 20px;
+			color: #1a3d5c;
+		}
+
+		.emojis {
+			text-align: center;
+			font-size: 30px;
+			margin-top: 25px;
+			animation: pulse 2s infinite;
+		}
+
+		@keyframes pulse {
+			0% {
+				transform: scale(1);
+			}
+
+			50% {
+				transform: scale(1.1);
+			}
+
+			100% {
+				transform: scale(1);
+			}
+		}
+
+		/* Floating hearts decoration */
+		.hearts-deco {
+			text-align: center;
+			margin: 15px 0;
+			font-size: 14px;
+			letter-spacing: 8px;
+			color: rgba(255, 105, 180, 0.5);
+			animation: heartbeat 3s ease-in-out infinite;
+		}
+
+		@keyframes heartbeat {
+
+			0%,
+			100% {
+				opacity: 0.4;
+			}
+
+			50% {
+				opacity: 0.8;
+			}
+		}
+
+		/* Responsive */
+		@media (max-width: 768px) {
+			.container {
+				width: 95%;
+				padding: 30px 20px;
+				margin: 20px auto;
+			}
+
+			.container h1 {
+				font-size: 32px;
+			}
+
+			.quality {
+				flex-direction: column !important;
+			}
+
+			.quality .img-wrapper {
+				width: 100%;
+				height: 250px;
+			}
+
+			.quality .text-content {
+				padding: 20px;
+			}
+
+			#goodmorning {
+				padding: 30px 20px;
+			}
+		}
+	</style>
+	<script>
+		function showQualities() {
+			var el = document.getElementById('qualities');
+			el.style.display = 'block';
+			setTimeout(function () {
+				el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}, 100);
+		}
+		function showGoodMorning() {
+			var el = document.getElementById('goodmorning');
+			el.style.display = 'block';
+			setTimeout(function () {
+				el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}, 100);
+		}
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Dr. Sarah N.</h1>
+		<div class="hearts-deco">♥ ♥ ♥ ♥ ♥</div>
+		<h2>(Daddy's Medicine)</h2>
+		<p>
+			She is a woman of rare discipline and radiant grace, whose natural beauty is matched only by her principled
+			mind.
+			Loving in spirit, caring in deed, and educated with wisdom that shines beyond measure, she embodies elegance
+			in its purest form.
+		</p>
+		<button onclick="showQualities()">If you love Kababaa click here 💖</button>
+
+		<div id="qualities">
+			<h1>✨ The Living Portrait of Grace ✨</h1>
+
+			<div class="quality">
+				<div class="img-wrapper">
+					<img src="sarah-discipline.jpg" alt="Discipline">
+				</div>
+				<div class="text-content">
+					<h2>✦ Discipline</h2>
+					<p>Her discipline is luminous, a quiet strength that guides her steps with unwavering purpose.
+						She stands tall with poise and composure, a testament to the inner fire that fuels her every
+						step forward.</p>
+				</div>
+			</div>
+
+			<div class="quality">
+				<div class="img-wrapper">
+					<img src="sarah-love.jpg" alt="Love">
+				</div>
+				<div class="text-content">
+					<h2>✦ Love</h2>
+					<p>Her love is a gentle flame, warming hearts with sincerity and devotion that endures beyond
+						fleeting moments. In every smile, she radiates a warmth that makes the world feel like home.</p>
+				</div>
+			</div>
+
+			<div class="quality">
+				<div class="img-wrapper">
+					<img src="sarah-caring.jpg" alt="Caring">
+				</div>
+				<div class="text-content">
+					<h2>✦ Caring</h2>
+					<p>She tends to others with a tenderness that feels like sunlight breaking through clouds —
+						restorative and pure. Her presence alone brings comfort to those around her.</p>
+				</div>
+			</div>
+
+			<div class="quality">
+				<div class="img-wrapper">
+					<img src="sarah-education.jpg" alt="Education">
+				</div>
+				<div class="text-content">
+					<h2>✦ Education</h2>
+					<p>Her mind is a treasury of wisdom, cultivated through study and reflection, yet shared with
+						humility and grace. A true scholar and healer, she wears knowledge as her crown.</p>
+				</div>
+			</div>
+
+			<div class="quality">
+				<div class="img-wrapper">
+					<img src="sarah-discipline.jpg" alt="Principles">
+				</div>
+				<div class="text-content">
+					<h2>✦ Principles</h2>
+					<p>Her principles are the compass of her soul, directing her toward truth, justice, and integrity in
+						all things. She walks with conviction, guided by a moral clarity that inspires all who know her.
+					</p>
+				</div>
+			</div>
+
+			<div class="quality">
+				<div class="img-wrapper">
+					<img src="sarah-beauty.jpg" alt="Natural Beauty">
+				</div>
+				<div class="text-content">
+					<h2>✦ Natural Beauty</h2>
+					<p>Her beauty is not an ornament but an essence — a harmony of spirit and form that captivates
+						without artifice. In the embrace of nature, her radiance shines purest.</p>
+				</div>
+			</div>
+
+			<div style="text-align: center;">
+				<button onclick="showGoodMorning()">Wanna know what Kababaa says this morning? 🌹</button>
+			</div>
+		</div>
+
+		<div id="goodmorning">
+			<h1>🌞 Good Morning 😋🥰😊🤭</h1>
+			<p>
+				Kababaa is always happy and proud of you. Take care today 😘 — because your light deserves to shine
+				without dimming.
+			</p>
+			<p>
+				These words come from a man who believes in you with unwavering faith, who loves you not just for who
+				you are but for the dreams you carry, and who treasures your feelings as the most delicate jewels of his
+				heart.
+				His intention is simple yet profound: to stand beside you, to lift you when you feel weary, and to
+				remind you that your worth is immeasurable.
+				In every sunrise, he sees your smile; in every challenge, he sees your strength.
+				You are cherished, respected, and deeply loved.
+			</p>
+			<div class="emojis">💖✨🌸🌹😋🥰😊🤭</div>
+		</div>
+	</div>
+</body>
+
+</html>
